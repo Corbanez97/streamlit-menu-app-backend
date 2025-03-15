@@ -1,7 +1,7 @@
 import uuid
 from sqlalchemy import Column, String, Float
 from sqlalchemy.dialects.postgresql import UUID
-from sqlalchemy.orm import declarative_base
+from sqlalchemy.orm import declarative_base, relationship
 
 Base = declarative_base()
 
@@ -14,3 +14,5 @@ class MenuItem(Base):
     price = Column(Float, nullable=False)
     image_url = Column(String, nullable=True)
     category = Column(String, nullable=False)  # e.g., "food", "drink"
+
+    order_items = relationship("OrderItem", back_populates="menu_item")

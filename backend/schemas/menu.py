@@ -3,7 +3,7 @@ from uuid import UUID
 
 class MenuItemCreate(BaseModel):
     """Schema for creating a new menu item."""
-    id: UUID | None = None  # Optional UUID, auto-generated
+    id: UUID | None = None  # Optional UUID, auto-generated | Is being created inside DB, no need for this line
     name: str
     description: str | None = None
     price: float
