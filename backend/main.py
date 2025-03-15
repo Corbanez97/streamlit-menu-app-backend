@@ -3,10 +3,12 @@ from sqlalchemy.ext.asyncio import AsyncSession
 from sqlalchemy.sql import text
 from backend.database import get_db
 from backend.api.menu import router as menu_router
+from backend.models.orders import router as orders_router
 
 app = FastAPI()
 
 app.include_router(menu_router)
+app.include_router(orders_router)
 
 @app.get("/")
 def read_root():
