@@ -1,9 +1,12 @@
-import uuid
 from sqlalchemy import Column, String, Float
 from sqlalchemy.dialects.postgresql import UUID
-from sqlalchemy.orm import declarative_base, relationship
+from sqlalchemy.orm import relationship
 
-Base = declarative_base()
+from .models import Base
+
+import uuid
+
+# Base = declarative_base()
 
 class MenuItem(Base):
     __tablename__ = "menu_items"
@@ -15,4 +18,5 @@ class MenuItem(Base):
     image_url = Column(String, nullable=True)
     category = Column(String, nullable=False)  # e.g., "food", "drink"
 
-    order_items = relationship("OrderItem", back_populates="menu_item")
+    # Use string-based forward reference here
+    # order_items = relationship("OrderItem", back_populates="menu_item")

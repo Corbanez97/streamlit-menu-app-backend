@@ -59,7 +59,7 @@ async def get_order_items(order_id: UUID, db: AsyncSession = Depends(get_db)):
 async def create_order(order_data: OrderCreate, db: AsyncSession = Depends(get_db)):
     """Create a new order with items."""
     try:
-        new_order = Order(status="pending")
+        new_order = Order(status="pending", items = [])
         db.add(new_order)
         await db.commit()
         await db.refresh(new_order)

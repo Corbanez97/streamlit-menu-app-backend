@@ -1,12 +1,13 @@
-import uuid
 from sqlalchemy import Column, String, ForeignKey, Integer, DECIMAL, TIMESTAMP
 from sqlalchemy.dialects.postgresql import UUID
-from sqlalchemy.orm import declarative_base, relationship
+from sqlalchemy.orm import relationship
+
+from .models import Base
+
 from datetime import datetime
+import uuid
 
-from .menu import MenuItem
-
-Base = declarative_base()
+# Base = declarative_base()
 
 class Order(Base):
     __tablename__ = "orders"
@@ -30,6 +31,6 @@ class OrderItem(Base):
     created_at = Column(TIMESTAMP, nullable=False, default=datetime.utcnow)
 
     # Relationship to Order
-    order = relationship("Order", back_populates="items")
-    # Relationship to MenuItem
-    menu_item = relationship("MenuItem", back_populates="orders_items")
+    order = relationship("Order", back_populates="order_items")
+    # Use string-based forward reference here
+    menu_item = relationship("MenuItem", back_populates="order_items")

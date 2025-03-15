@@ -2,6 +2,7 @@ from fastapi import APIRouter, Depends, HTTPException
 from sqlalchemy.ext.asyncio import AsyncSession
 from sqlalchemy.future import select
 from backend.database import get_db
+
 from backend.models.menu import MenuItem
 
 from backend.schemas.menu import MenuItemCreate, MenuItemUpdate

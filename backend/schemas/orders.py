@@ -1,6 +1,7 @@
 from pydantic import BaseModel
 from uuid import UUID
 from datetime import datetime
+from typing import Optional
 
 class OrderItemCreate(BaseModel):
     """Schema for adding an item to an order."""
@@ -15,9 +16,9 @@ class OrderItemCreate(BaseModel):
 class OrderCreate(BaseModel):
     """Schema for creating a new order."""
     user_id: UUID | None = None  # Nullable foreign key to users(id)
-    items: list[OrderItemCreate]  # List of items in the order
+    items: Optional[list[OrderItemCreate]] = []  # List of items in the order
     status: str = "pending"  # Default status
-    created_at: datetime | None = None  # Auto-filled by the database
+    # created_at: datetime | None = None  # Auto-filled by the database
 
     class Config:
         from_attributes = True
